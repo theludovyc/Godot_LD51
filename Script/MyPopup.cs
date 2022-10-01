@@ -7,15 +7,15 @@ public class MyPopup : WindowDialog
     // private int a = 2;
     // private string b = "text";
 
-    MiniGame subScene = null;
+    private MiniGame subScene = null;
 
-    public void SetPauseSubScene(bool b){
+    public void SetPauseSubScene(bool b) {
         if(subScene != null){
             subScene.SetPauseChildren(b);
         }
     }
 
-    public void AddChildMiniGame(MiniGame miniGame){
+    public void AddChildMiniGame(MiniGame miniGame) {
         GetNode("ViewportContainer/Viewport/").AddChild(miniGame);
 
         subScene = miniGame;
