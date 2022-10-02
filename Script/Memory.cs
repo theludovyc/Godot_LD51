@@ -120,7 +120,6 @@ public class Memory : MiniGame
         if (++_findedPeers >= Mathf.FloorToInt(((_plateSize * _plateSize) / 2)))
         {
             await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
-            QueueFree();
             EmitSignal(nameof(Win));
             return;
         }
