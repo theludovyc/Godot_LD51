@@ -6,8 +6,7 @@ using System.Linq;
 public class MainGame : Control
 {
 	Dictionary<string, PackedScene> miniGames = new Dictionary<string, PackedScene>{
-		{"BlueMiniGame", null},
-		{"RedMiniGame", null},
+		{"Fryer", null},
 		{"PetTheDog", null}
 	};
 
@@ -24,7 +23,7 @@ public class MainGame : Control
 	}
 
 	Vector2 GetRandomPosition(){
-		return new Vector2(((float)GD.RandRange(10, 990)), (float)GD.RandRange(10, 490));
+		return new Vector2(((float)GD.RandRange(10, 990)), (float)GD.RandRange(10, 440));
 	}
 
 	void CreatePopup(String miniGameName){
