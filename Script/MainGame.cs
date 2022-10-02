@@ -14,6 +14,7 @@ public class MainGame : Control
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");
 	private PackedScene GameOver = GD.Load<PackedScene>("res://Scene/GameOver.tscn");
+	private PackedScene WinScene = GD.Load<PackedScene>("res://Scene/Win.tscn");
 	private Stack<MyPopup> popups = new Stack<MyPopup>();
 
 	void OnPopupHide() {
@@ -22,6 +23,8 @@ public class MainGame : Control
 
 		if (popups.Count > 0) {
 			popups.Peek().SetPauseSubScene(false);
+		}else{
+			GetTree().ChangeSceneTo(WinScene);
 		}
 	}
 
