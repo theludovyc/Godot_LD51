@@ -22,7 +22,11 @@ public class MainGame : Control
 		}
 	}
 
-	void CreatePopup(String miniGameName, int px){
+	Vector2 GetRandomPosition(){
+		return new Vector2(((float)GD.RandRange(10, 990)), (float)GD.RandRange(10, 490));
+	}
+
+	void CreatePopup(String miniGameName){
 		if (popups.Count > 0) {
 			popups.Peek().SetPauseSubScene(true);
 		}
@@ -32,7 +36,7 @@ public class MainGame : Control
 
 		currentPopup.AddChildMiniGame(game);
 		AddChild(currentPopup);
-		currentPopup.SetPosition(new Vector2(px, 0));
+		currentPopup.SetPosition(GetRandomPosition());
 		currentPopup.Connect("popup_hide", this, "OnPopupHide");
 		currentPopup.Popup_();
 		popups.Push(currentPopup);
@@ -47,7 +51,7 @@ public class MainGame : Control
 
         for (int i = 0; i < 10; i++)
         {
-            CreatePopup(GetRandomMiniGameName(), i * 100);
+            CreatePopup(GetRandomMiniGameName());
         }
 	}
 
