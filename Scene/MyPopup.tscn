@@ -1,19 +1,22 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://Art/OS/new_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Script/MyPopup.cs" type="Script" id=3]
 
 [node name="MyPopup" type="WindowDialog"]
 margin_right = 600.0
 margin_bottom = 400.0
+theme = ExtResource( 1 )
 popup_exclusive = true
 script = ExtResource( 3 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_right = 600.0
-margin_bottom = 400.0
+margin_left = 4.0
+margin_right = 596.0
+margin_bottom = 396.0
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 600, 400 )
+size = Vector2( 592, 396 )
 handle_input_locally = false
 render_target_update_mode = 0
 

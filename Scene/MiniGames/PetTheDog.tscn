@@ -111,6 +111,7 @@ texture_normal = ExtResource( 5 )
 position = Vector2( 308, 281 )
 frames = SubResource( 9 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [connection signal="button_down" from="Dynamite" to="." method="OnButtonDown" binds= [ "Dynamite" ]]
