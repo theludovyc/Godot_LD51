@@ -5,12 +5,15 @@ using System.Linq;
 
 public class MainGame : Control
 {
+	const int maxPopup = 11;
+
 	Dictionary<string, PackedScene> miniGames = new Dictionary<string, PackedScene>{
 		{"Fryer", null},
 		{"PetTheDog", null}
 	};
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");
+	private PackedScene GameOver = GD.Load<PackedScene>("res://Scene/GameOver.tscn");
 	private Stack<MyPopup> popups = new Stack<MyPopup>();
 
 	void OnPopupHide() {
@@ -59,6 +62,14 @@ public class MainGame : Control
     {
         return miniGames.Keys.ToArray()[Convert.ToInt32(GD.RandRange(0, miniGames.Count - 1))];
     }
+
+	void OnTimerTimeout(){
+		if(popups.Count > maxPopup - 1){
+			GetTree().ChangeSceneTo(GameOver);
+		}
+
+		CreatePopup(GetRandomMiniGameName());
+	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)

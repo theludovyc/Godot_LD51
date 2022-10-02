@@ -36,3 +36,9 @@ margin_top = -44.0
 margin_right = -4.0
 margin_bottom = -3.0
 texture = ExtResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
