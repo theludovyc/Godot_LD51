@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Script/Memory.cs" type="Script" id=1]
+[ext_resource path="res://Art/Memory/back_card.png" type="Texture" id=2]
+[ext_resource path="res://Art/Memory/cat_cosmonaut.png" type="Texture" id=3]
+[ext_resource path="res://Art/Memory/cat_rocket.png" type="Texture" id=4]
+[ext_resource path="res://Art/Memory/middle_card.png" type="Texture" id=5]
+[ext_resource path="res://Art/Memory/moon_sky.png" type="Texture" id=6]
+[ext_resource path="res://Art/Memory/cat_asteroid.png" type="Texture" id=7]
+
+[node name="MiniGame" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 401.0, 200.0 ],
+"_edit_vertical_guides_": [ 600.0, 301.0 ]
+}
+_cardTextures = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+_cardBack = ExtResource( 2 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 600.0
+margin_bottom = 400.0
+
+[node name="CardContainer" type="GridContainer" parent="Control"]
+margin_left = 110.0
+margin_top = 10.0
+margin_right = 490.0
+margin_bottom = 390.0
+columns = 3
