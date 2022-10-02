@@ -9,7 +9,8 @@ public class MainGame : Control
 
 	Dictionary<string, PackedScene> miniGames = new Dictionary<string, PackedScene>{
 		{"Fryer", null},
-		{"PetTheDog", null}
+		{"PetTheDog", null},
+		{"ChampagneShower", null}
 	};
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");
