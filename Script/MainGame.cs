@@ -15,7 +15,8 @@ public class MainGame : Control
 	private Stack<MyPopup> popups = new Stack<MyPopup>();
 
 	void OnPopupHide() {
-		popups.Pop();
+		var popup = popups.Pop();
+		popup.QueueFree();
 
 		if (popups.Count > 0) {
 			popups.Peek().SetPauseSubScene(false);
@@ -57,9 +58,7 @@ public class MainGame : Control
 
     private string GetRandomMiniGameName()
     {
-        int index = Mathf.RoundToInt(GD.Randi() % miniGames.Keys.Count + 1);
-
-        return miniGames.Keys.ToArray()[index];
+        return miniGames.Keys.ToArray()[Convert.ToInt32(GD.RandRange(0, miniGames.Count - 1))];
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
