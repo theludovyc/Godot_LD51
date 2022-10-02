@@ -57,7 +57,7 @@ public class MainGame : Control
 
     private string GetRandomMiniGameName()
     {
-        int index = Mathf.RoundToInt(GD.Randi() % miniGames.Keys.Count);
+        int index = Mathf.RoundToInt(GD.Randi() % miniGames.Keys.Count + 1);
 
         return miniGames.Keys.ToArray()[index];
     }
