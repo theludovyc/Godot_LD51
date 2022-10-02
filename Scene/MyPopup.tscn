@@ -16,3 +16,10 @@ margin_bottom = 400.0
 size = Vector2( 600, 400 )
 handle_input_locally = false
 render_target_update_mode = 0
+
+[node name="Mask" type="ColorRect" parent="."]
+visible = false
+margin_right = 600.0
+margin_bottom = 400.0
+mouse_default_cursor_shape = 8
+color = Color( 0, 0, 0, 0.823529 )

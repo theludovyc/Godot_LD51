@@ -3,13 +3,15 @@ using System;
 
 public class MyPopup : WindowDialog
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
-
     private MiniGame miniGame = null;
+    private ColorRect mask = null;
 
     public void SetPauseSubScene(bool b) {
+        if (b)
+            mask.Show();
+        else
+            mask.Hide();
+
         if(miniGame != null){
             miniGame.SetPauseChildren(b);
         }
@@ -26,9 +28,7 @@ public class MyPopup : WindowDialog
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //subScene = GetNode<Node_>("ViewportContainer/Viewport/Node");
-
-        //subScene.PauseChildren();
+        mask = GetNode<ColorRect>("Mask");
     }
 
     void OnMiniGameWin(){
