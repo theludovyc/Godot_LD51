@@ -3,18 +3,16 @@
 [ext_resource path="res://Script/MyPopup.cs" type="Script" id=3]
 
 [node name="MyPopup" type="WindowDialog"]
-margin_right = 275.0
-margin_bottom = 217.0
+margin_right = 600.0
+margin_bottom = 400.0
 popup_exclusive = true
 script = ExtResource( 3 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
-margin_top = 2.0
-margin_right = 275.0
-margin_bottom = 217.0
+margin_right = 600.0
+margin_bottom = 400.0
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer"]
-size = Vector2( 100, 100 )
-size_override_stretch = true
+size = Vector2( 600, 400 )
 handle_input_locally = false
 render_target_update_mode = 0

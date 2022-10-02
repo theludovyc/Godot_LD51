@@ -6,7 +6,8 @@ public class MainGame : Control
 {
     private static readonly string[] GameNames = {
         "BlueMiniGame",
-        "RedMiniGame"
+        "RedMiniGame",
+		"PetTheDog"
     };
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");

@@ -3,9 +3,8 @@ using System;
 
 public class MiniGame : Node
 {
-    // Declare member variables here. Examples:
-    // private int a = 2;
-    // private string b = "text";
+    [Signal]
+    protected delegate void Win();
 
     public void SetPauseChildren(bool b){
         foreach(Node node in GetChildren()){
