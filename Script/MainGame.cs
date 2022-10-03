@@ -22,7 +22,7 @@ public class MainGame : Control
 	private Stack<MyPopup> popups = new Stack<MyPopup>();
 	private Timer timer = null;
 	private Control winScreen = null;
-	private Control gameOverScreen = null;
+	private AnimatedSprite gameOverScreen = null;
 	private bool isGameStoped = false;
 	private AudioStreamPlayer2D audioPlayer = null;
 	private MusicPlayer musicPlayer = null;
@@ -126,7 +126,7 @@ public class MainGame : Control
 	private void GetNodes()
 	{
 		winScreen = GetNode<Control>("WinScreen");
-		gameOverScreen = GetNode<Control>("GameOverScreen");
+		gameOverScreen = GetNode<AnimatedSprite>("GameOverScreen");
 		timer = GetNode<Timer>("Timer");
 	}
 
@@ -156,10 +156,12 @@ public class MainGame : Control
 
 	private async void Win()
 	{
+		AnimatedSprite animation = GetNode<AnimatedSprite>("WinAnim");
 		StopGame();
 		winScreen.SetAsToplevel(true);
 		winScreen.Visible = true;
-		winScreen.GetNode<AnimatedSprite>("WinAnim").Play();
+		animation.Frame = 0;
+		animation.Play();
 
 		await ToSignal(GetTree().CreateTimer(3f), "timeout");
 		isGameStoped = true;
@@ -168,14 +170,16 @@ public class MainGame : Control
 
 	private async void Lose()
 	{
-		StopGame();
 		PlaySFX("GLITCH");
-		await ToSignal(GetTree().CreateTimer(1f), "timeout");
-
-
 		gameOverScreen.SetAsToplevel(true);
 		gameOverScreen.Visible = true;
+		gameOverScreen.Frame = 0;
+		gameOverScreen.Play("Glitch");
+
+		await ToSignal(GetTree().CreateTimer(1f), "timeout");
+		gameOverScreen.Play("BlueScreen");
 		PlaySFX("GameOver");
+		StopGame();
 
 		await ToSignal(GetTree().CreateTimer(3f), "timeout");
 		isGameStoped = true;
