@@ -8,12 +8,12 @@ public class MainGame : Control
 	const int maxPopup = 11;
 
 	Dictionary<string, PackedScene> miniGames = new Dictionary<string, PackedScene>{
-		//{"Fryer", null},
+		{"Fryer", null},
 		{"PetTheDog", null},
-		//{"ChampagneShower", null},
-		//{"VegetableSamurai", null},
-		//{"Memory", null},
-		//{"DontDoDucks", null},
+		{"ChampagneShower", null},
+		{"VegetableSamurai", null},
+		{"Memory", null},
+		{"DontDoDucks", null},
 		{"FeedThePlant", null}
 	};
 
