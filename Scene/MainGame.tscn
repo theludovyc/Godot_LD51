@@ -60,9 +60,9 @@ expand = true
 
 [node name="RamText" type="Label" parent="Taskbar"]
 margin_left = 1281.0
-margin_top = 9.0
+margin_top = 11.0
 margin_right = 1432.0
-margin_bottom = 44.0
+margin_bottom = 46.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "RAM : 80%"
@@ -129,6 +129,7 @@ margin_bottom = 900.0
 texture = ExtResource( 15 )
 
 [node name="WinScreen" type="ColorRect" parent="."]
+visible = false
 margin_right = 1600.0
 margin_bottom = 900.0
 color = Color( 0.239216, 0.239216, 0.239216, 1 )

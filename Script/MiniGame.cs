@@ -17,7 +17,6 @@ public class MiniGame : Node
 
 	private void PauseNode(Node node, bool isPaused)
 	{
-		GD.Print("Pause ()" + Name);
 		node.SetProcess(!isPaused);
 		node.SetPhysicsProcess(!isPaused);
 
