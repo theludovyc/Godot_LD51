@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Troll.mp3-930732b742e38ee84d2588ce9e9aad83.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musiques/Troll.mp3"
+dest_files=[ "res://.import/Troll.mp3-930732b742e38ee84d2588ce9e9aad83.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

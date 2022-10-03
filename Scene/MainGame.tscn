@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Script/MainGame.cs" type="Script" id=1]
 [ext_resource path="res://Art/OS/taskbar.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Art/OS/Victory/victory6.png" type="Texture" id=14]
 [ext_resource path="res://Art/OS/bluescreen.png" type="Texture" id=15]
 [ext_resource path="res://Art/OS/Victory/victory8.png" type="Texture" id=16]
+[ext_resource path="res://Script/MusicPlayer.cs" type="Script" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -145,5 +146,10 @@ margin_right = 1539.0
 margin_bottom = 786.0
 custom_fonts/font = SubResource( 5 )
 text = "Press any key to play again."
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource( 17 )
+startTheme = 3
+musicVolume = -10.0
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

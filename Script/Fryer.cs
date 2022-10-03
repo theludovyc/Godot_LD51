@@ -9,6 +9,8 @@ public class Fryer : MiniGame
     // private int a = 2;
     // private string b = "text";
 
+	public override MusicTheme MusicTheme {get => MusicTheme.Troll;}
+
     static readonly Texture[] potatoes_tex = new []{
         GD.Load<Texture>("res://Art/Fryer/candy.png"),
         GD.Load<Texture>("res://Art/Fryer/chad.png"),
@@ -29,6 +31,11 @@ public class Fryer : MiniGame
 
         indexes = indexes.OrderBy(x => GD.Randi()).ToArray();
     }
+
+	protected override void OnFocus()
+	{
+		PlaySFX("HotPotato");
+	}
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
