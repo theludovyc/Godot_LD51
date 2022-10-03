@@ -24,6 +24,8 @@ public class MainGame : Control
 	private Control winScreen = null;
 	private Control gameOverScreen = null;
 	private bool isGameStoped = false;
+	private AudioStreamPlayer2D audioPlayer = null;
+	private MusicPlayer musicPlayer = null;
 
 	void OnPopupHide()
 	{
@@ -36,7 +38,11 @@ public class MainGame : Control
 		UpdateRamViewer();
 		if (popups.Count > 0)
 		{
-			popups.Peek().SetPauseSubScene(false);
+			PlaySFX("Click");
+			MyPopup focusedPopup = popups.Peek();
+
+			focusedPopup.SetPauseSubScene(false);
+			musicPlayer.SetActiveMusic(focusedPopup.MiniGame.MusicTheme);
 		}
 		else
 		{
@@ -59,6 +65,7 @@ public class MainGame : Control
 		MyPopup currentPopup = myPopup.Instance<MyPopup>();
 		MiniGame game = miniGames[miniGameName].Instance<MiniGame>();
 
+		musicPlayer.SetActiveMusic(game.MusicTheme);
 		currentPopup.AddChildMiniGame(game);
 		GetNode("PopUps").AddChild(currentPopup);
 		currentPopup.WindowTitle = miniGameName + ".exe";
@@ -67,6 +74,9 @@ public class MainGame : Control
 		currentPopup.Popup_();
 		popups.Push(currentPopup);
 		UpdateRamViewer();
+
+		if (popups.Count == maxPopup)
+			PlaySFX("Warning");
 	}
 
 	private void UpdateRamViewer()
@@ -77,6 +87,11 @@ public class MainGame : Control
 	public override void _Ready()
 	{
 		GetNodes();
+		CreateAudioStreamPlayer();
+		musicPlayer = GetNode<MusicPlayer>("MusicPlayer");
+		foreach (var key in miniGames.Keys.ToList())
+			miniGames[key] = GD.Load<PackedScene>($"res://Scene/MiniGames/{key}.tscn");
+
 		StartGame();
 	}
 
@@ -86,11 +101,19 @@ public class MainGame : Control
 		winScreen.Visible = false;
 		gameOverScreen.Visible = false;
 
-		foreach (var key in miniGames.Keys.ToList())
-			miniGames[key] = GD.Load<PackedScene>($"res://Scene/MiniGames/{key}.tscn");
+		musicPlayer.PlayAll();
+		CreatePopups();
 
+	}
+
+	private async void CreatePopups()
+	{
+		await ToSignal(GetTree().CreateTimer(1f), "timeout");
 		for (int i = 0; i < maxPopup - 1; i++)
+		{
+			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
 			CreatePopup(GetRandomMiniGameName());
+		}
 		timer.Start();
 	}
 
@@ -127,7 +150,7 @@ public class MainGame : Control
 			MyPopup popup = popups.Pop();
 			popup.QueueFree();
 		}
-
+		musicPlayer.Pause();
 		timer.Stop();
 	}
 
@@ -137,19 +160,37 @@ public class MainGame : Control
 		winScreen.SetAsToplevel(true);
 		winScreen.Visible = true;
 		winScreen.GetNode<AnimatedSprite>("WinAnim").Play();
-		
-        await ToSignal(GetTree().CreateTimer(3f), "timeout");
+
+		await ToSignal(GetTree().CreateTimer(3f), "timeout");
 		isGameStoped = true;
+		PlaySFX("Win");
 	}
 
 	private async void Lose()
 	{
 		StopGame();
+		PlaySFX("GLITCH");
+		await ToSignal(GetTree().CreateTimer(1f), "timeout");
+
 
 		gameOverScreen.SetAsToplevel(true);
 		gameOverScreen.Visible = true;
+		PlaySFX("GameOver");
 
-        await ToSignal(GetTree().CreateTimer(3f), "timeout");
+		await ToSignal(GetTree().CreateTimer(3f), "timeout");
 		isGameStoped = true;
+	}
+
+	private void CreateAudioStreamPlayer()
+	{
+		audioPlayer = new AudioStreamPlayer2D();
+		audioPlayer.Autoplay = false;
+		AddChild(audioPlayer);
+	}
+
+	protected void PlaySFX(string audioName, string format = "wav")
+	{
+		audioPlayer.Stream = GD.Load<AudioStream>($"res://Audio/SFX/{audioName}.{format}");
+		audioPlayer.Play();
 	}
 }

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Chiptune.mp3-06ccae79990e0c9af40f0a678798a323.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musiques/Chiptune.mp3"
+dest_files=[ "res://.import/Chiptune.mp3-06ccae79990e0c9af40f0a678798a323.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

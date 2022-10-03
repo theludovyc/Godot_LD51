@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/HipHop.mp3-6dd12c0711292c545cd087b574b6125b.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musiques/HipHop.mp3"
+dest_files=[ "res://.import/HipHop.mp3-6dd12c0711292c545cd087b574b6125b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

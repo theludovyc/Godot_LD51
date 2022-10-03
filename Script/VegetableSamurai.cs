@@ -12,6 +12,8 @@ public class VegetableSamurai : MiniGame
 	private TextureRect knife = null;
 	private int clickCount = 0;
 
+	public override MusicTheme MusicTheme {get => MusicTheme.HipHop;}
+
 	public override void _Ready()
 	{
 		textureButton = GetNode<TextureButton>("Control/TextureButton");
@@ -37,6 +39,7 @@ public class VegetableSamurai : MiniGame
 	{
 		clickCount++;
 		UpdateTexture();
+		PlaySFX("Cut");
 
 		if (clickCount == _clickNumber)
 			EmitSignal(nameof(Win));

@@ -7,6 +7,7 @@ public class ChampagneShower : MiniGame
 	private Champagne champagne = null;
 
 	private bool hasWin = false;
+	public override MusicTheme MusicTheme {get => MusicTheme.HipHop;}
 
 	public override void _Ready()
 	{

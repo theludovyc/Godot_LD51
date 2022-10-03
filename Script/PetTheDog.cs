@@ -8,6 +8,7 @@ public class PetTheDog : MiniGame
     bool canClick = true;
 
     TextureButton[] buttons;
+	public override MusicTheme MusicTheme {get => MusicTheme.Chiptune;}
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,6 +33,11 @@ public class PetTheDog : MiniGame
             button.Modulate = new Color("#ffffff");
         }
     }
+
+	protected override void OnFocus()
+	{
+		PlaySFX("Dog");
+	}
 
     void OnButtonDown(String s){
         if(canClick){

@@ -20,6 +20,8 @@ public class Memory : MiniGame
     private int _findedPeers = 0;
 
 
+	public override MusicTheme MusicTheme {get => MusicTheme.Synthwave;}
+
     public override void _Ready()
     {
         _cardContainer = GetNode<GridContainer>("Control/CardContainer");
@@ -102,6 +104,7 @@ public class Memory : MiniGame
             else
                 WrongPeer();
         }
+		PlaySFX("MemoryCard");
     }
 
     private void ResetCardSelection()

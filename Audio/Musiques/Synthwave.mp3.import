@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Synthwave.mp3-aa633b8ffbb57ff6d1d5b303c1687f69.mp3str"
+
+[deps]
+
+source_file="res://Audio/Musiques/Synthwave.mp3"
+dest_files=[ "res://.import/Synthwave.mp3-aa633b8ffbb57ff6d1d5b303c1687f69.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

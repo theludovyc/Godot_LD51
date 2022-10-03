@@ -5,6 +5,11 @@ public class DontDoDuck : MiniGame
 {
 	private static bool isDrawReady = false;
 
+	protected override void OnFocus()
+	{
+		PlaySFX("Duck");
+	}
+
 	public override void _Ready()
 	{
 		if (isDrawReady)
