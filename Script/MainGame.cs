@@ -156,7 +156,7 @@ public class MainGame : Control
 
 	private async void Win()
 	{
-		AnimatedSprite animation = GetNode<AnimatedSprite>("WinAnim");
+		AnimatedSprite animation = winScreen.GetNode<AnimatedSprite>("WinAnim");
 		StopGame();
 		winScreen.SetAsToplevel(true);
 		winScreen.Visible = true;
