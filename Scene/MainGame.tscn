@@ -150,6 +150,6 @@ text = "Press any key to play again."
 [node name="MusicPlayer" type="Node" parent="."]
 script = ExtResource( 17 )
 startTheme = 3
-musicVolume = -10.0
+musicVolume = -25.0
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
