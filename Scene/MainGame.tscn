@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Script/MainGame.cs" type="Script" id=1]
 [ext_resource path="res://Art/OS/taskbar.png" type="Texture" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://Art/OS/Glitch/glitch2.png" type="Texture" id=19]
 [ext_resource path="res://Art/OS/Glitch/glitch4.png" type="Texture" id=20]
 [ext_resource path="res://Art/OS/Glitch/glitch5.png" type="Texture" id=21]
+[ext_resource path="res://Art/OS/new_theme.tres" type="Theme" id=22]
+[ext_resource path="res://Art/OS/start screen.png" type="Texture" id=23]
+[ext_resource path="res://Fonts/new_dynamicfont.tres" type="DynamicFont" id=24]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -87,7 +90,6 @@ text = "RAM : 80%"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
-autostart = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 1.0
@@ -167,7 +169,49 @@ musicVolume = -25.0
 visible = false
 frames = SubResource( 6 )
 animation = "Glitch"
+frame = 1
 playing = true
 offset = Vector2( 800, 450 )
 
+[node name="StartPopup" type="WindowDialog" parent="."]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+theme = ExtResource( 22 )
+
+[node name="TextureRect" type="TextureRect" parent="StartPopup"]
+margin_left = 4.0
+margin_right = 596.0
+margin_bottom = 396.0
+texture = ExtResource( 23 )
+
+[node name="Button" type="TextureButton" parent="StartPopup"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -74.5
+margin_top = 125.0
+margin_right = 74.5
+margin_bottom = 166.0
+texture_normal = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="StartPopup/Button"]
+margin_left = 39.5
+margin_top = 7.0
+margin_right = 113.5
+margin_bottom = 37.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 24 )
+text = "CLOSE"
+
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
+[connection signal="button_down" from="StartPopup/Button" to="." method="OnStartPopupButtonDown"]
+[connection signal="mouse_entered" from="StartPopup/Button" to="." method="OnStartPopupButtonMouseEntered"]
+[connection signal="mouse_exited" from="StartPopup/Button" to="." method="OnStartPopupButtonMouseExited"]
