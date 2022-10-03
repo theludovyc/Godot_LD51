@@ -12,6 +12,11 @@ __meta__ = {
 "_edit_vertical_guides_": [ 601.0 ]
 }
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 400.0
+color = Color( 0.870588, 0.529412, 0.670588, 1 )
+
 [node name="MyPotatoes" type="TextureRect" parent="."]
 margin_left = 165.0
 margin_top = 29.0

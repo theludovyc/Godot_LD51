@@ -86,7 +86,7 @@ position = Vector2( 50, 1 )
 [node name="Animation" type="AnimatedSprite" parent="Francis"]
 position = Vector2( 254, 248 )
 frames = SubResource( 3 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Francis"]
@@ -131,5 +131,5 @@ shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Champagne"]
 frames = SubResource( 2 )
-frame = 2
+frame = 1
 playing = true

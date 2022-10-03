@@ -86,6 +86,11 @@ __meta__ = {
 "_edit_vertical_guides_": [ 600.0 ]
 }
 
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 400.0
+color = Color( 0.462745, 0.258824, 0.541176, 1 )
+
 [node name="Dynamite" type="TextureButton" parent="."]
 margin_left = 44.0
 margin_top = 60.0

@@ -25,6 +25,7 @@ public class MainGame : Control
 		var popup = popups.Pop();
 		popup.QueueFree();
 
+		UpdateRamViewer();
 		if (popups.Count > 0) {
 			popups.Peek().SetPauseSubScene(false);
 		}else{
@@ -56,7 +57,7 @@ public class MainGame : Control
 
 	private void UpdateRamViewer()
 	{
-		GetNode<Label>("Taskbar/RamText").Text = (string.Format("RAM: {0:00}%", (popups.Count / (float)maxPopup) * 100));
+		GetNode<Label>("Taskbar/RamText").Text = (string.Format("RAM: {0:00}%", (popups.Count / ((float)maxPopup + 1)) * 100));
 	}
 
 	// Called when the node enters the scene tree for the first time.

@@ -17,6 +17,11 @@ __meta__ = {
 _cardTextures = [ ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 _cardBack = ExtResource( 2 )
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 600.0
+margin_bottom = 400.0
+color = Color( 0.768627, 0.67451, 0.827451, 1 )
+
 [node name="Control" type="Control" parent="."]
 margin_right = 600.0
 margin_bottom = 400.0
