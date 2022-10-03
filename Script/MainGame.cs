@@ -46,10 +46,17 @@ public class MainGame : Control
 
 		currentPopup.AddChildMiniGame(game);
 		AddChild(currentPopup);
+		currentPopup.WindowTitle = miniGameName + ".exe";
 		currentPopup.SetPosition(GetRandomPosition());
 		currentPopup.Connect("popup_hide", this, "OnPopupHide");
 		currentPopup.Popup_();
 		popups.Push(currentPopup);
+		UpdateRamViewer();
+	}
+
+	private void UpdateRamViewer()
+	{
+		GetNode<Label>("Taskbar/RamText").Text = (string.Format("RAM: {0:00}%", (popups.Count / (float)maxPopup) * 100));
 	}
 
 	// Called when the node enters the scene tree for the first time.

@@ -1,9 +1,19 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Script/MainGame.cs" type="Script" id=1]
 [ext_resource path="res://Art/OS/taskbar.png" type="Texture" id=2]
 [ext_resource path="res://Art/OS/taskbar_out.png" type="Texture" id=3]
 [ext_resource path="res://Art/OS/taskbar_in.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/W95FA.otf" type="DynamicFontData" id=5]
+[ext_resource path="res://Script/OS/TimeViewer.cs" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 34
+font_data = ExtResource( 5 )
 
 [node name="MainGame" type="Control"]
 anchor_right = 1.0
@@ -16,15 +26,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -50.0
 texture = ExtResource( 2 )
+expand = true
 
-[node name="StartButton" type="TextureRect" parent="."]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 3.0
-margin_top = -44.0
-margin_right = 152.0
-margin_bottom = -3.0
-texture = ExtResource( 3 )
+[node name="RamText" type="Label" parent="Taskbar"]
+margin_left = 1281.0
+margin_top = 9.0
+margin_right = 1432.0
+margin_bottom = 44.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "RAM : 80%"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 1.0
@@ -37,8 +52,23 @@ margin_right = -4.0
 margin_bottom = -3.0
 texture = ExtResource( 4 )
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
-autostart = true
+[node name="Time" type="Label" parent="TextureRect"]
+margin_right = 149.0
+margin_bottom = 41.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "00:00:00"
+align = 1
+valign = 1
+script = ExtResource( 6 )
+
+[node name="StartButton" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = -44.0
+margin_right = 152.0
+margin_bottom = -3.0
+texture = ExtResource( 3 )
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
