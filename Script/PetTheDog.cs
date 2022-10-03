@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public class PetTheDog : MiniGame
 {
@@ -7,30 +8,51 @@ public class PetTheDog : MiniGame
 
     bool canClick = true;
 
-    TextureButton[] buttons;
 	public override MusicTheme MusicTheme {get => MusicTheme.Chiptune;}
+
+    MyButton[] buttons;
+
+    int[] indexes;
+
+    void shuffleIndexes(){
+        indexes = indexes.OrderBy(x => GD.Randi()).ToArray();
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         anim = GetNode<AnimatedSprite>("AnimatedSprite");
 
-        buttons = new TextureButton[3]{GetNode<TextureButton>("Dynamite"), GetNode<TextureButton>("Knife"), GetNode<TextureButton>("Hand")};
+        buttons = new MyButton[3]{GetNode<MyButton>("Dynamite"), GetNode<MyButton>("Knife"), GetNode<MyButton>("Hand")};
+
+        indexes = new int[buttons.Length];
+
+        for(var i = 0; i < buttons.Length; ++i){
+            indexes[i] = i;
+        }
+
+        shuffleIndexes();
+
+        Vector2[] buttonPositions = new Vector2[buttons.Length];
+
+        for(var i = 0; i < buttons.Length; ++i){
+            buttonPositions[i] = buttons[i].RectPosition;
+        }
+
+        for(var i = 0; i < buttons.Length; ++i){
+            buttons[i].RectPosition = buttonPositions[indexes[i]];
+        }
     }
 
     void disableButtons(){
         foreach(var button in buttons){
-            button.Disabled = true;
-
-            button.Modulate = new Color("#4a4a4a");
+            button.SetEnabled(false);
         }
     }
 
     void enableButtons(){
         foreach(var button in buttons){
-            button.Disabled = false;
-
-            button.Modulate = new Color("#ffffff");
+            button.SetEnabled(true);
         }
     }
 

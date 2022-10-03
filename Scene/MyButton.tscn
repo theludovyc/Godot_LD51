@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Art/PetTheDog/pet_the_dog_choices1.png" type="Texture" id=1]
+[ext_resource path="res://Script/MyButton.cs" type="Script" id=2]
+
+[node name="Dynamite" type="TextureButton"]
+margin_left = 44.0
+margin_top = 60.0
+margin_right = 164.0
+margin_bottom = 180.0
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnDynamiteMouse"]
