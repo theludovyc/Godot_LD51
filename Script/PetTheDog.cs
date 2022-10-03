@@ -44,6 +44,8 @@ public class PetTheDog : MiniGame
             anim.Play(s);
             
             disableButtons();
+
+			PlaySFX("Dog_" + s);
         }
     }
 
