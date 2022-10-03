@@ -14,6 +14,7 @@ public class MyPopup : WindowDialog
 
         if(miniGame != null){
             miniGame.SetPauseChildren(b);
+			GetNode<Viewport>("ViewportContainer/Viewport").GuiDisableInput = b;
         }
     }
 
@@ -29,7 +30,18 @@ public class MyPopup : WindowDialog
     public override void _Ready()
     {
         mask = GetNode<ColorRect>("Mask");
+
+		HideCloseButton();
     }
+
+	private void HideCloseButton()
+	{
+		TextureButton btn = GetCloseButton();
+
+		btn.Visible = false;
+		btn.QueueFree();
+
+	}
 
     void OnMiniGameWin(){
         Hide();

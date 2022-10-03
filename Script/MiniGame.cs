@@ -1,26 +1,44 @@
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using System;
 
 public class MiniGame : Node
 {
-    [Signal]
-    protected delegate void Win();
+	[Signal]
+	protected delegate void Win();
 
-    public void SetPauseChildren(bool b){
-        foreach(Node node in GetChildren()){
-            node.SetProcess(!b);
-        }
-    }
+	public void SetPauseChildren(bool b)
+	{
+		List<Node> childs = GetAllChilds(this);
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-        
-    }
+		childs.ForEach((c) => PauseNode(c, b));
+	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	private void PauseNode(Node node, bool isPaused)
+	{
+		GD.Print("Pause ()" + Name);
+		node.SetProcess(!isPaused);
+		node.SetPhysicsProcess(!isPaused);
+
+		if (node is AnimatedSprite)
+		{
+			AnimatedSprite animSprite = (AnimatedSprite)node;
+			if (isPaused)
+				animSprite.Stop();
+			else
+				animSprite.Play();
+		}
+	}
+
+	private List<Node> GetAllChilds(Node node, List<Node> childs = null)
+	{
+		if (childs == null)
+			childs = new List<Node>();
+
+		childs.Add(node);
+		foreach (Node child in node.GetChildren())
+			childs = GetAllChilds(child, childs);
+		return (childs);
+	}
 }
