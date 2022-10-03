@@ -25,7 +25,7 @@ public class MainGame : Control
 	private Control winScreen = null;
 	private AnimatedSprite gameOverScreen = null;
 	private bool isGameStoped = false;
-	private AudioStreamPlayer2D audioPlayer = null;
+	private AudioStreamPlayer audioPlayer = null;
 	private MusicPlayer musicPlayer = null;
 	private WindowDialog startPopup = null;
 	private Label startPopupButtonLabel = null;
@@ -193,7 +193,7 @@ public class MainGame : Control
 
 	private void CreateAudioStreamPlayer()
 	{
-		audioPlayer = new AudioStreamPlayer2D();
+		audioPlayer = new AudioStreamPlayer();
 		audioPlayer.Autoplay = false;
 		AddChild(audioPlayer);
 	}
