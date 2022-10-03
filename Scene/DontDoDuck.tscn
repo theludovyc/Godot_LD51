@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scene/MiniGames/DontDoDucks/DontDoDucks_Answer.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Script/MiniGame.cs" type="Script" id=3]
+
+[node name="MiniGame" type="Node"]
+script = ExtResource( 3 )
+
+[node name="DontDoDucks_Answer" parent="." instance=ExtResource( 1 )]
