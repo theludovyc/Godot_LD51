@@ -27,8 +27,6 @@ public class DontDoDuckAnswer : Node
 
 		SetupButton(buttons[0], GetRandom(_goodAnswers), true);
 
-		GD.Print(wrongAnswers.Count);
-		GD.Print(buttons.Count);
 		for (int i = 1; i < buttons.Count; i++)
 			SetupButton(buttons[i], wrongAnswers[i], false);
 	}

@@ -12,7 +12,8 @@ public class MainGame : Control
 		{"PetTheDog", null},
 		{"ChampagneShower", null},
 		{"VegetableSamurai", null},
-		{"Memory", null}
+		{"Memory", null},
+		{"DontDoDucks", null}
 	};
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");

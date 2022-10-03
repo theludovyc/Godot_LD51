@@ -8,7 +8,7 @@ public class Drawer : Node
 	[Export] private float _penSize = 5f;
 	[Export] private Texture _penTexture = null;
 
-	private Node linesParent = null;
+	private Node2D linesParent = null;
 	private Line2D currentLine = null;
 	private bool isPressed = false;
 	private Sprite _penSprite = null;
@@ -19,13 +19,8 @@ public class Drawer : Node
 	public override void _Ready()
 	{
 		base._Ready();
-		linesParent = GetNode("Lines");
+		linesParent = GetNode<Node2D>("Lines");
 		CreatePenSprite();
-	}
-
-	public override void _Process(float delta)
-	{
-		_penSprite.Position = GetViewport().GetMousePosition();
 	}
 
 	private void CreatePenSprite()
@@ -48,12 +43,16 @@ public class Drawer : Node
 			linesParent.AddChild(currentLine);
 		}
 		
-		if (inputEvent is InputEventMouseMotion && isPressed)
+		if (inputEvent is InputEventMouseMotion)
 		{
 			InputEventMouseMotion motion = (InputEventMouseMotion)inputEvent;
 
-			currentLine.AddPoint(motion.Position);
-			pointsNumber++;
+			_penSprite.Position = motion.Position;
+			if (isPressed)
+			{
+				currentLine.AddPoint(motion.Position);
+				pointsNumber++;
+			}
 		}
 	}
 
