@@ -26,6 +26,8 @@ public class MainGame : Control
 	private bool isGameStoped = false;
 	private AudioStreamPlayer2D audioPlayer = null;
 	private MusicPlayer musicPlayer = null;
+	private WindowDialog startPopup = null;
+	private Label startPopupButtonLabel = null;
 
 	void OnPopupHide()
 	{
@@ -102,13 +104,14 @@ public class MainGame : Control
 		gameOverScreen.Visible = false;
 
 		musicPlayer.PlayAll();
-		CreatePopups();
+
+		startPopup.PopupCentered();
 
 	}
 
 	private async void CreatePopups()
 	{
-		await ToSignal(GetTree().CreateTimer(1f), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.25f), "timeout");
 		for (int i = 0; i < maxPopup - 1; i++)
 		{
 			await ToSignal(GetTree().CreateTimer(0.2f), "timeout");
@@ -128,6 +131,8 @@ public class MainGame : Control
 		winScreen = GetNode<Control>("WinScreen");
 		gameOverScreen = GetNode<AnimatedSprite>("GameOverScreen");
 		timer = GetNode<Timer>("Timer");
+		startPopup = GetNode<WindowDialog>("StartPopup");
+		startPopupButtonLabel = GetNode<Label>("StartPopup/Button/Label");
 	}
 
 	private string GetRandomMiniGameName()
@@ -196,5 +201,21 @@ public class MainGame : Control
 	{
 		audioPlayer.Stream = GD.Load<AudioStream>($"res://Audio/SFX/{audioName}.{format}");
 		audioPlayer.Play();
+	}
+
+	void OnStartPopupButtonDown(){
+		startPopup.QueueFree();
+
+		CreatePopups();
+
+		timer.Start();
+	}
+
+	void OnStartPopupButtonMouseEntered(){
+		startPopupButtonLabel.AddColorOverride("font_color", new Color("#ffffff"));
+	}
+
+	void OnStartPopupButtonMouseExited(){
+		startPopupButtonLabel.AddColorOverride("font_color", new Color("#000000"));
 	}
 }
