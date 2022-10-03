@@ -167,7 +167,6 @@ musicVolume = -25.0
 visible = false
 frames = SubResource( 6 )
 animation = "Glitch"
-frame = 3
 playing = true
 offset = Vector2( 800, 450 )
 

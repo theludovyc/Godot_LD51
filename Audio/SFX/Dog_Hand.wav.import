@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Dog_Win.wav-21aad6cfe6772e97b37fb9fa8e340739.sample"
+path="res://.import/Dog_Hand.wav-c84ac6ee2ce14937c8c573d73d8580fb.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Dog_Win.wav"
-dest_files=[ "res://.import/Dog_Win.wav-21aad6cfe6772e97b37fb9fa8e340739.sample" ]
+source_file="res://Audio/SFX/Dog_Hand.wav"
+dest_files=[ "res://.import/Dog_Hand.wav-c84ac6ee2ce14937c8c573d73d8580fb.sample" ]
 
 [params]
 

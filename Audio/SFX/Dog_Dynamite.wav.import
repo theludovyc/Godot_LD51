@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Dog_boom.wav-3f2a7dc6d7f41483d752f015aef6a9b1.sample"
+path="res://.import/Dog_Dynamite.wav-9edc07c5d9da4c4e8fe890eb72d71ad2.sample"
 
 [deps]
 
-source_file="res://Audio/SFX/Dog_boom.wav"
-dest_files=[ "res://.import/Dog_boom.wav-3f2a7dc6d7f41483d752f015aef6a9b1.sample" ]
+source_file="res://Audio/SFX/Dog_Dynamite.wav"
+dest_files=[ "res://.import/Dog_Dynamite.wav-9edc07c5d9da4c4e8fe890eb72d71ad2.sample" ]
 
 [params]
 
