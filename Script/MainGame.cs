@@ -18,11 +18,8 @@ public class MainGame : Control
 	};
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");
-	private PackedScene GameOver = GD.Load<PackedScene>("res://Scene/GameOver.tscn");
-	private PackedScene WinScene = GD.Load<PackedScene>("res://Scene/Win.tscn");
 	private Stack<MyPopup> popups = new Stack<MyPopup>();
 	private Timer timer = null;
-	private Control winScreen = null;
 	private AnimatedSprite gameOverScreen = null;
 	private bool isGameStoped = false;
 	private AudioStreamPlayer audioPlayer = null;
@@ -32,7 +29,7 @@ public class MainGame : Control
 
 	void OnPopupHide()
 	{
-		if (popups.Count == 0)
+		if (popups.Count == 0 || isGameStoped)
 			return;
 
 		var popup = popups.Pop();
@@ -101,7 +98,6 @@ public class MainGame : Control
 	private void StartGame()
 	{
 		isGameStoped = false;
-		winScreen.Visible = false;
 		gameOverScreen.Visible = false;
 
 		musicPlayer.PlayAll();
@@ -129,7 +125,6 @@ public class MainGame : Control
 
 	private void GetNodes()
 	{
-		winScreen = GetNode<Control>("WinScreen");
 		gameOverScreen = GetNode<AnimatedSprite>("GameOverScreen");
 		timer = GetNode<Timer>("Timer");
 		startPopup = GetNode<WindowDialog>("StartPopup");
@@ -160,22 +155,17 @@ public class MainGame : Control
 		timer.Stop();
 	}
 
-	private async void Win()
+	private void Win()
 	{
-		AnimatedSprite animation = winScreen.GetNode<AnimatedSprite>("WinAnim");
-		StopGame();
-		winScreen.SetAsToplevel(true);
-		winScreen.Visible = true;
-		animation.Frame = 0;
-		animation.Play();
-
-		await ToSignal(GetTree().CreateTimer(3f), "timeout");
-		isGameStoped = true;
-		PlaySFX("Win");
+		GetTree().ChangeScene("res://Scene/WinScreen.tscn");
 	}
 
 	private async void Lose()
 	{
+		musicPlayer.Pause();
+		timer.Stop();
+		isGameStoped = true;
+
 		PlaySFX("GLITCH");
 		gameOverScreen.SetAsToplevel(true);
 		gameOverScreen.Visible = true;
@@ -183,12 +173,8 @@ public class MainGame : Control
 		gameOverScreen.Play("Glitch");
 
 		await ToSignal(GetTree().CreateTimer(1f), "timeout");
-		gameOverScreen.Play("BlueScreen");
-		PlaySFX("GameOver");
-		StopGame();
 
-		await ToSignal(GetTree().CreateTimer(3f), "timeout");
-		isGameStoped = true;
+		GetTree().ChangeScene("res://Scene/GameOver.tscn");
 	}
 
 	private void CreateAudioStreamPlayer()

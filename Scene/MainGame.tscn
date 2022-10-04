@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Script/MainGame.cs" type="Script" id=1]
 [ext_resource path="res://Art/OS/taskbar.png" type="Texture" id=2]
@@ -7,15 +7,6 @@
 [ext_resource path="res://Fonts/W95FA.otf" type="DynamicFontData" id=5]
 [ext_resource path="res://Script/OS/TimeViewer.cs" type="Script" id=6]
 [ext_resource path="res://Art/OS/potatOS_logo.png" type="Texture" id=7]
-[ext_resource path="res://Art/OS/Victory/victory3.png" type="Texture" id=8]
-[ext_resource path="res://Art/OS/Victory/victory4.png" type="Texture" id=9]
-[ext_resource path="res://Art/OS/Victory/victory5.png" type="Texture" id=10]
-[ext_resource path="res://Art/OS/Victory/victory7.png" type="Texture" id=11]
-[ext_resource path="res://Art/OS/Victory/victory2.png" type="Texture" id=12]
-[ext_resource path="res://Art/OS/Victory/victory1.png" type="Texture" id=13]
-[ext_resource path="res://Art/OS/Victory/victory6.png" type="Texture" id=14]
-[ext_resource path="res://Art/OS/bluescreen.png" type="Texture" id=15]
-[ext_resource path="res://Art/OS/Victory/victory8.png" type="Texture" id=16]
 [ext_resource path="res://Script/MusicPlayer.cs" type="Script" id=17]
 [ext_resource path="res://Art/OS/Glitch/glitch1.png" type="Texture" id=18]
 [ext_resource path="res://Art/OS/Glitch/glitch2.png" type="Texture" id=19]
@@ -37,25 +28,8 @@ font_data = ExtResource( 5 )
 size = 24
 font_data = ExtResource( 5 )
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 11 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="DynamicFont" id=5]
-size = 72
-font_data = ExtResource( 5 )
-
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "BlueScreen",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
 "name": "Glitch",
@@ -142,24 +116,6 @@ text = "Potat-OS"
 align = 1
 valign = 1
 
-[node name="WinScreen" type="ColorRect" parent="."]
-visible = false
-margin_right = 1600.0
-margin_bottom = 900.0
-color = Color( 0.239216, 0.239216, 0.239216, 1 )
-
-[node name="WinAnim" type="AnimatedSprite" parent="WinScreen"]
-position = Vector2( 806, 449.5 )
-frames = SubResource( 4 )
-
-[node name="Label" type="Label" parent="WinScreen"]
-margin_left = 755.0
-margin_top = 717.0
-margin_right = 1539.0
-margin_bottom = 786.0
-custom_fonts/font = SubResource( 5 )
-text = "Press any key to play again."
-
 [node name="MusicPlayer" type="Node" parent="."]
 script = ExtResource( 17 )
 startTheme = 3
@@ -169,8 +125,7 @@ musicVolume = -25.0
 visible = false
 frames = SubResource( 6 )
 animation = "Glitch"
-frame = 1
-playing = true
+frame = 3
 offset = Vector2( 800, 450 )
 
 [node name="StartPopup" type="WindowDialog" parent="."]
