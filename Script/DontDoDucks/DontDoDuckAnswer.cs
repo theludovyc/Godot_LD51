@@ -6,6 +6,9 @@ using System;
 public class DontDoDuckAnswer : Node
 {
 	[Signal] public delegate void GoodAnswer();
+	[Export] private float drawLineSize = 5f;
+	[Export] private Color drawColor = new Color(0f, 0f, 0f);
+	[Export] private float drawSizeMultiplier = 0.5f;
 	[Export] List<string> _wrongAnswers = null;
 	[Export] List<string> _goodAnswers = null;
 
@@ -15,6 +18,28 @@ public class DontDoDuckAnswer : Node
 	{
 		base._Ready();
 		SetUpButtons();
+	}
+
+	public void SetDraw(List<List<Vector2>> linesData)
+	{
+		Control parent = GetNode<Control>("Control/Draw");
+
+		foreach (List<Vector2> linePoints in linesData)
+		{
+			Line2D line = CreateLine();
+			foreach (Vector2 point in linePoints)
+				line.AddPoint(point * drawSizeMultiplier);
+			parent.AddChild(line);
+		}
+	}
+
+	private Line2D CreateLine()
+	{
+		Line2D line = new Line2D();
+
+		line.DefaultColor = drawColor;
+		line.Width = drawLineSize;
+		return (line);
 	}
 
 	private void SetUpButtons()

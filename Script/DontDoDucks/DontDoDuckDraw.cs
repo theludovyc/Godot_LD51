@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using System;
 
@@ -13,6 +14,11 @@ public class DontDoDuckDraw : Node
 	private void DrawValidate()
 	{
 		EmitSignal(nameof(OnDrawValidate));
+	}
+
+	public List<List<Vector2>> GetDrawData()
+	{
+		return GetNode<Drawer>("Control/ViewportContainer/Viewport/Drawer").GetDrawPoints();
 	}
 
 }

@@ -1,29 +1,50 @@
+using System.Collections.Generic;
 using Godot;
 using System;
 
 public class DontDoDuck : MiniGame
 {
-	private static bool isDrawReady = false;
+	private static List<List<Vector2>> drawData = null;
+
+	private DontDoDuckAnswer answer = null;
+	private DontDoDuckDraw draw = null;
 
 	protected override void OnFocus()
 	{
 		PlaySFX("Duck");
-	}
-
-	public override void _Ready()
-	{
-		if (isDrawReady)
+		if (drawData != null)
 		{
-			DontDoDuckAnswer answer = CreateWindow<DontDoDuckAnswer>("res://Scene/MiniGames/DontDoDucks/DontDoDucks_Answer.tscn");
-
-			answer.Connect(nameof(DontDoDuckAnswer.GoodAnswer), this, nameof(OnGoodAnswer));
+			CreateAnswer();
 		}
 		else
 		{
-			DontDoDuckDraw draw = CreateWindow<DontDoDuckDraw>("res://Scene/MiniGames/DontDoDucks/DontDoDucks_Draw.tscn");
-
-			draw.Connect(nameof(DontDoDuckDraw.OnDrawValidate), this, nameof(OnDrawValidate));
+			CreateDraw();
 		}
+	}
+
+	private void CreateAnswer()
+	{
+		if (draw != null)
+		{
+			draw.QueueFree();
+			draw = null;
+		}
+		answer = CreateWindow<DontDoDuckAnswer>("res://Scene/MiniGames/DontDoDucks/DontDoDucks_Answer.tscn");
+		answer.SetDraw(drawData);
+
+		answer.Connect(nameof(DontDoDuckAnswer.GoodAnswer), this, nameof(OnGoodAnswer));
+	}
+
+	private void CreateDraw()
+	{
+		if (answer != null)
+		{
+			answer.QueueFree();
+			answer = null;
+		}
+		draw = CreateWindow<DontDoDuckDraw>("res://Scene/MiniGames/DontDoDucks/DontDoDucks_Draw.tscn");
+
+		draw.Connect(nameof(DontDoDuckDraw.OnDrawValidate), this, nameof(OnDrawValidate));
 	}
 
 	private T CreateWindow<T>(string path) where T : Node
@@ -38,13 +59,13 @@ public class DontDoDuck : MiniGame
 
 	private void OnDrawValidate()
 	{
-		isDrawReady = true;
+		drawData = draw.GetDrawData();
 		EmitSignal(nameof(Win));
 	}
 
 	private void OnGoodAnswer()
 	{
-		isDrawReady = false;
+		drawData = null;
 		EmitSignal(nameof(Win));
 	}
 }

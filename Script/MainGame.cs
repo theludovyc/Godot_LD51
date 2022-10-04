@@ -8,13 +8,13 @@ public class MainGame : Control
 	const int maxPopup = 11;
 
 	Dictionary<string, PackedScene> miniGames = new Dictionary<string, PackedScene>{
-		{"Fryer", null},
-		{"PetTheDog", null},
-		{"ChampagneShower", null},
-		{"VegetableSamurai", null},
-		{"Memory", null},
-		{"DontDoDucks", null},
-		{"FeedThePlant", null}
+		//{"Fryer", null},
+		//{"PetTheDog", null},
+		//{"ChampagneShower", null},
+		//{"VegetableSamurai", null},
+		//{"Memory", null},
+		{"DontDoDucks", null}
+		//{"FeedThePlant", null}
 	};
 
 	private PackedScene myPopup = GD.Load<PackedScene>("res://Scene/MyPopup.tscn");
@@ -72,6 +72,7 @@ public class MainGame : Control
 		currentPopup.SetPosition(GetRandomPosition());
 		currentPopup.Connect("popup_hide", this, "OnPopupHide");
 		currentPopup.Popup_();
+		currentPopup.SetPauseSubScene(false);
 		popups.Push(currentPopup);
 		UpdateRamViewer();
 
