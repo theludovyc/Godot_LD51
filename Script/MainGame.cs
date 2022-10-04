@@ -127,7 +127,12 @@ public class MainGame : Control
 	{
 		gameOverScreen = GetNode<AnimatedSprite>("GameOverScreen");
 		timer = GetNode<Timer>("Timer");
+
 		startPopup = GetNode<WindowDialog>("StartPopup");
+		var btn = startPopup.GetCloseButton();
+		btn.Visible = false;
+		btn.QueueFree();
+
 		startPopupButtonLabel = GetNode<Label>("StartPopup/Button/Label");
 	}
 
